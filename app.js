@@ -8,7 +8,7 @@ const edges = [];
 const cables = [];
 
 let graph = new Graph();
-let root = new Node('central', 'root');
+let root = new Node('root', 'central');
 
 nodes.push(root);
 lr = lineReader('./cable_table.csv');
