@@ -33,14 +33,17 @@ lr.on('line', (line, lineCount) => {
     }
 })
 .on('close', () => {
-    let isEndNode = true;
+
     const temp = [];
     for (let i = 0; i < edges.length; i++) {
+        let isEndNode = true;
         for (let j = 0; j < edges.length; j++) {
            if(edges[i].source === edges[j].target) {
+
                isEndNode = false;
            }
         }
+
         if (isEndNode) {
             let edge = {
                 id : 'c' + (edges.length + temp.length +1), length : 1, startNodeId :  root.id,
