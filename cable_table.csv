@@ -1,0 +1,8 @@
+cableId,length,startNodeId,startNodeType,endNodeId,endNodeType
+c1,300,n1,kleme,n2,box
+с5,20,n6,kleme,n7,sleeve
+c7,50,n7,sleeve,n9,user
+c4,1200,n4,box,n5,user
+c2,2400,n2,box,n3,sleeve
+c6,300,n7,sleeve,n8,box
+c3,1200,n3,sleeve,n4,box
