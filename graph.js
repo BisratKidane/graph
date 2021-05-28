@@ -1,4 +1,3 @@
-const Edge = require('./edge');
 module.exports = class Graph{
     constructor(){
         this.nodes = new Map()
