@@ -1,6 +1,6 @@
 module.exports = class Graph {
     constructor() {
-        this.nodes = new Map()
+        this.nodes = new Map();
     }
 
     addNode(node) {
