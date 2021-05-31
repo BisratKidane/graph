@@ -35,7 +35,7 @@ lr.on('line', (line, lineCount) => {
             startNodeType: cableInfo[3],
             endNodeId: cableInfo[4],
             endNodeType: cableInfo[5]
-        }
+        };
         cables.push(cable);
     }
 })

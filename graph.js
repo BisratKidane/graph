@@ -10,7 +10,7 @@ module.exports = class Graph {
     }
 
     addEdge(source, destination, length, edgeId) {
-        this.nodes.get(source).push({id: destination, length: length, edgeId: edgeId})
+        this.nodes.get(source).push({id: destination, length: length, edgeId: edgeId});
     }
 
     getNodes() {
@@ -33,7 +33,7 @@ module.exports = class Graph {
                     length: neighbors[i].length,
                     source: node.id,
                     target: neighbors[i].id.id
-                }
+                };
                 edges.push(edge);
             }
         }

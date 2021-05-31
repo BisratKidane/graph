@@ -10,7 +10,7 @@ function findRootNodes(root, edges, cables, graph) {
             }
         }
         if (isEndNode) {
-            roots.push(edges[i])
+            roots.push(edges[i]);
         }
     }
     mergeRootNodes(root, roots, cables, graph);
