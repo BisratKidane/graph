@@ -2,6 +2,7 @@ const lineReader = require('linebyline');
 const Node = require('./node');
 const Edge = require('./edge');
 const Graph = require('./graph');
+const helper = require('./root');
 
 const nodes = [];
 const edges = [];
@@ -10,8 +11,8 @@ const cables = [];
 let graph = new Graph();
 let root = new Node('root', 'central');
 graph.addNode(root);
-
 nodes.push(root);
+
 lr = lineReader('./cable_table.csv');
 
 lr.on('line', (line, lineCount) => {
@@ -34,24 +35,7 @@ lr.on('line', (line, lineCount) => {
     }
 })
 .on('close', () => {
-
-    const roots = [];
-    for (let i = 0; i < edges.length; i++) {
-        let isEndNode = true;
-        for (let j = 0; j < edges.length; j++) {
-           if(edges[i].source === edges[j].target) {
-               isEndNode = false;
-           }
-        }
-
-        if (isEndNode) {
-            let edge = {
-                id : 'c' + (edges.length + temp.length +1), length : 1, startNodeId :  root.id,
-                startNodeType : root.type, endNodeId : edges[i].source, endNodeType : edges[i]
-            }
-            roots.push(edges[i])
-        }
-    }
+    let roots = helper.findRootsNodes(root, edges);
     cables.forEach((elem) => {
         let isRoot = false;
         for (let i = 0; i < roots.length; i++) {
@@ -61,10 +45,11 @@ lr.on('line', (line, lineCount) => {
         }
         if (isRoot) {
             let target = new Node(elem.endNodeId, elem.endNodeType);
-            graph.addNode(target);
+            if (!graph.nodes.has(target)) {
+                graph.addNode(target);
+            }
             graph.addEdge(root, target, elem.length, elem.id);
         } else {
-            //console.log(elem);
             let source = new Node(elem.startNodeId, elem.startNodeType);
             let target = new Node(elem.endNodeId, elem.endNodeType);
             graph.addNode(source);
@@ -72,7 +57,6 @@ lr.on('line', (line, lineCount) => {
             graph.addEdge(source, target, elem.length, elem.id);
         }
     });
-
     let topology = {
         nodes : graph.getNodes(),
         edges : graph.getEdges()
