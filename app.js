@@ -2,7 +2,7 @@ const lineReader = require('linebyline');
 const Node = require('./node');
 const Edge = require('./edge');
 const Graph = require('./graph');
-const helper = require('./root');
+const helper = require('./helper');
 
 const nodes = [];
 const edges = [];
