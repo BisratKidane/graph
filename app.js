@@ -4,14 +4,12 @@ const Edge = require('./edge');
 const Graph = require('./graph');
 const helper = require('./helper');
 
-const nodes = [];
 const edges = [];
 const cables = [];
 
 let graph = new Graph();
 let root = new Node('root', 'central');
 graph.addNode(root);
-nodes.push(root);
 
 lr = lineReader('./cable_table.csv');
 
@@ -20,14 +18,9 @@ lr.on('line', (line, lineCount) => {
         let cableInfo = line.split(',');
         let source = new Node(cableInfo[2], cableInfo[3]);
         let target = new Node(cableInfo[4], cableInfo[5]);
-        if (!nodes.some(el => el.id === source.id)) {
-            nodes.push(source);
-        }
-        if (!nodes.some(el => el.id === target.id)) {
-            nodes.push(target);
-        }
         let edge = new Edge(cableInfo[0], cableInfo[1], source.id, target.id);
         edges.push(edge);
+        // cable object used to find root nodes that should be replaced by the real root (central)
         let cable = {
             id: cableInfo[0],
             length: cableInfo[1],
@@ -40,6 +33,8 @@ lr.on('line', (line, lineCount) => {
     }
 })
 .on('close', () => {
+    // helper function for finding the nodes that should be replaced by central root
+    // and insert nodes and edges to the graph
     helper.findRootNodes(root, edges, cables, graph);
     let topology = {
         nodes: graph.getNodes(),

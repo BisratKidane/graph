@@ -16,6 +16,9 @@ function findRootNodes(root, edges, cables, graph) {
     mergeRootNodes(root, roots, cables, graph);
 }
 
+/*
+ * inserts nodes and edges to the graph, replacing edges to the given root nodes with the actual node
+ */
 function mergeRootNodes(root, roots, cables, graph) {
     cables.forEach((elem) => {
         let isRoot = false;
