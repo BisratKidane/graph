@@ -40,7 +40,7 @@ lr.on('line', (line, lineCount) => {
     }
 })
 .on('close', () => {
-    helper.findRootsNodes(root, edges, cables, graph);
+    helper.findRootNodes(root, edges, cables, graph);
     let topology = {
         nodes: graph.getNodes(),
         edges: graph.getEdges()

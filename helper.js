@@ -1,6 +1,6 @@
 const Node = require('./node');
 
-function findRootsNodes(root, edges, cables, graph) {
+function findRootNodes(root, edges, cables, graph) {
     const roots = [];
     for (let i = 0; i < edges.length; i++) {
         let isEndNode = true;
@@ -40,4 +40,4 @@ function mergeRootNodes(root, roots, cables, graph) {
     });
 }
 
-module.exports.findRootsNodes = findRootsNodes;
+module.exports.findRootNodes = findRootNodes;
